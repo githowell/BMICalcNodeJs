@@ -16,28 +16,28 @@ app.get("/", function (req, res) {
 
 app.post ("/", function (req, res) {
 
-    let first_num = parseFloat(req.body.first_num);
-    let second_num = parseFloat(req.body.second_num);
+    let first_num = Number(req.body.first_num);
+    let second_num = Number(req.body.second_num);
 
-    let bmi = (second_num) / ((first_num *.01) *(first_num*.01));
-
+    let bmi = parseFloat ((second_num) / ((first_num *.01) *(first_num*.01)));
+    var newBmi = bmi.toFixed(2);
     // console.log(req.body);
 
     let results = '';
 
-    if(bmi<18.5){
+    if(newBmi<18.5){
         results = 'Underweight';
-         }else if(18.5<=bmi&&bmi<=24.9){
+         }else if(18.5<=newBmi&&newBmi<=24.9){
         results = 'Healthy';
-         }else if(25<=bmi&&bmi<=29.9){
+         }else if(25<=newBmi&&newBmi<=29.9){
         results = 'Overweight';
-         }else if(30<=bmi&&bmi<=34.9){
+         }else if(30<=newBmi&&newBmi<=34.9){
         results = 'Obese';
-         }else if(35<=bmi){
+         }else if(35<=newBmi){
         results = 'Extremely obese';
          }
     
-         res.send("Your body mass index is " + bmi + ". You are " + results + "!");
+         res.send("Your body mass index is " + newBmi + ". You are " + results + "!");
 
 });
 
